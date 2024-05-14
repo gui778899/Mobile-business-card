@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup
+    x:Class="PWApp.Views.PopPages.OptionsPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+    CanBeDismissedByTappingOutsideOfPopup="True"
+    Size="250,220"
+    Color="Transparent">
+    <Frame BorderColor="Transparent" CornerRadius="13">
+        <VerticalStackLayout x:Name="layout" BackgroundColor="Transparent">
+            <Label
+                FontAttributes="Bold"
+                FontSize="Header"
+                Text="Search by:"
+                TextColor="#002748" />
+            <RadioButton
+                    BackgroundColor="Transparent"
+                    CheckedChanged="RadioButton_CheckedChanged"
+                    Content="Name"
+                    GroupName="mygroup"
+                    TextColor="#002748" />
+            <RadioButton
+                    BackgroundColor="Transparent"
+                    BorderColor="#002748"
+                    CheckedChanged="RadioButton_CheckedChanged"
+                    Content="Email"
+                    GroupName="mygroup"
+                    TextColor="#002748" />
+            <RadioButton
+                    BackgroundColor="Transparent"
+                    BorderColor="#002748"
+                    CheckedChanged="RadioButton_CheckedChanged"
+                    Content="Phone number"
+                    GroupName="mygroup"
+                    TextColor="#002748" />
+            <RadioButton
+                    BackgroundColor="Transparent"
+                    BorderColor="#002748"
+                    CheckedChanged="RadioButton_CheckedChanged"
+                    Content="Job title"
+                    GroupName="mygroup"
+                    TextColor="#002748" />
+            <RadioButton
+                    BackgroundColor="Transparent"
+                    BorderColor="#002748"
+                    CheckedChanged="RadioButton_CheckedChanged"
+                    Content="Company name"
+                    GroupName="mygroup"
+                    TextColor="#002748" />
+        </VerticalStackLayout>
+    </Frame>
+</mct:Popup>

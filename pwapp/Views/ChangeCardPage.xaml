@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PWApp.ChangeCardPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:PWApp.ViewModels"
+    Title=""
+    x:DataType="viewmodel:ChangeCardPageViewModel"
+    BackgroundColor="{DynamicResource PageBackgourndColor}">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False" IsVisible="False" />
+    </Shell.BackButtonBehavior>
+    <VerticalStackLayout>
+        <VerticalStackLayout
+            Padding="70,20,70,0"
+            Spacing="25"
+            VerticalOptions="Fill">
+            <Border Style="{DynamicResource InputBorder}">
+                <Entry
+                    Keyboard="Text"
+                    Placeholder="First name"
+                    Style="{DynamicResource CustomEntry}"
+                    Text="{Binding CardData.FirstName, Mode=TwoWay}" />
+            </Border>
+            <Border Style="{DynamicResource InputBorder}">
+                <Entry
+                    Keyboard="Text"
+                    Placeholder="Second name"
+                    Style="{DynamicResource CustomEntry}"
+                    Text="{Binding CardData.SecondName, Mode=TwoWay}" />
+            </Border>
+            <Border Style="{DynamicResource InputBorder}">
+                <Entry
+                    Keyboard="Telephone"
+                    Placeholder="Phone number"
+                    Style="{DynamicResource CustomEntry}"
+                    Text="{Binding CardData.FirstPhoneNumber, Mode=TwoWay}" />
+            </Border>
+            <Border Style="{DynamicResource InputBorder}">
+                <Entry
+                    Keyboard="Telephone"
+                    Placeholder="Phone number"
+                    Style="{DynamicResource CustomEntry}"
+                    Text="{Binding CardData.SecondPhoneNumber, Mode=TwoWay}" />
+            </Border>
+            <Border Style="{DynamicResource InputBorder}">
+                <Entry
+                    Keyboard="Email"
+                    Placeholder="E-mail"
+                    Style="{DynamicResource CustomEntry}"
+                    Text="{Binding CardData.Email, Mode=TwoWay}" />
+            </Border>
+            <Border Style="{DynamicResource InputBorder}">
+                <Entry
+                    Keyboard="Text"
+                    Placeholder="Company name"
+                    Style="{DynamicResource CustomEntry}"
+                    Text="{Binding CardData.CompanyName, Mode=TwoWay}" />
+            </Border>
+            <Border Style="{DynamicResource InputBorder}">
+                <Entry
+                    Keyboard="Text"
+                    Placeholder="Job title"
+                    Style="{DynamicResource CustomEntry}"
+                    Text="{Binding CardData.JobTitle, Mode=TwoWay}" />
+            </Border>
+        </VerticalStackLayout>
+        <HorizontalStackLayout
+            Margin="0,50,0,0"
+            Padding="0,20,0,0"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand">
+            <Grid ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110" />
+                    <ColumnDefinition Width="110" />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Grid.Column="0"
+                    Command="{Binding DeleteCardCommand}"
+                    HeightRequest="50"
+                    HorizontalOptions="Fill"
+                    Style="{DynamicResource PageActionButton}"
+                    Text="Delete"
+                    VerticalOptions="End" />
+                <Button
+                    Grid.Column="1"
+                    Command="{Binding SaveCardCommand}"
+                    HeightRequest="50"
+                    HorizontalOptions="Fill"
+                    Style="{DynamicResource PageActionButton}"
+                    Text="Save" />
+            </Grid>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

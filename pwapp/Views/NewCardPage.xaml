@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PWApp.NewCardPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:PWApp.ViewModels"
+    x:DataType="viewmodel:NewCardPageViewModel"
+    BackgroundColor="{DynamicResource PageBackgourndColor}">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False" IsVisible="False" />
+    </Shell.BackButtonBehavior>
+    <VerticalStackLayout>
+        <VerticalStackLayout
+            Padding="70,20,70,0"
+            Spacing="25"
+            VerticalOptions="Fill">
+            <Border Style="{DynamicResource InputBorder}">
+                <Entry
+                    Keyboard="Text"
+                    Placeholder="First name"
+                    Style="{DynamicResource CustomEntry}"
+                    Text="{Binding CardData.FirstName, Mode=TwoWay}" />
+            </Border>
+            <Border Style="{DynamicResource InputBorder}">
+                <Entry
+                    Keyboard="Text"
+                    Placeholder="Second name"
+                    Style="{DynamicResource CustomEntry}"
+                    Text="{Binding CardData.SecondName, Mode=TwoWay}" />
+            </Border>
+            <Border Style="{DynamicResource InputBorder}">
+                <Entry
+                    Keyboard="Telephone"
+                    Placeholder="Phone number"
+                    Style="{DynamicResource CustomEntry}"
+                    Text="{Binding CardData.FirstPhoneNumber, Mode=TwoWay}" />
+            </Border>
+            <Border Style="{DynamicResource InputBorder}">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <Entry
+                    Keyboard="Telephone"
+                    Placeholder="Phone number"
+                    Style="{DynamicResource CustomEntry}"
+                    Text="{Binding CardData.SecondPhoneNumber, Mode=TwoWay}" />
+            </Border>
+            <Border Style="{DynamicResource InputBorder}">
+                <Entry
+                    Keyboard="Email"
+                    Placeholder="E-mail"
+                    Style="{DynamicResource CustomEntry}"
+                    Text="{Binding CardData.Email, Mode=TwoWay}" />
+            </Border>
+            <Border Style="{DynamicResource InputBorder}">
+                <Entry
+                    Keyboard="Text"
+                    Placeholder="Company name"
+                    Style="{DynamicResource CustomEntry}"
+                    Text="{Binding CardData.CompanyName, Mode=TwoWay}" />
+            </Border>
+            <Border Style="{DynamicResource InputBorder}">
+                <Entry
+                    Keyboard="Text"
+                    Placeholder="Job title"
+                    Style="{DynamicResource CustomEntry}"
+                    Text="{Binding CardData.JobTitle, Mode=TwoWay}" />
+            </Border>
+        </VerticalStackLayout>
+        <VerticalStackLayout Margin="0,50,0,0" Padding="115,20,115,0">
+            <Button
+                Command="{Binding GenerateCardCommand}"
+                HeightRequest="50"
+                Style="{DynamicResource PageActionButton}"
+                Text="Generate"
+                VerticalOptions="End" />
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

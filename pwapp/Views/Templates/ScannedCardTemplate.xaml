@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="PWApp.Views.Templates.ScannedCardTemplate"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="this">
+    <Frame
+        Margin="0,20,0,20"
+        Padding="10,10,15,20"
+        BorderColor="#002748"
+        CornerRadius="15"
+        HasShadow="True"
+        HeightRequest="125"
+        HorizontalOptions="Fill">
+        <Frame.Shadow>
+            <Shadow
+                Brush="{DynamicResource ShadowColor}"
+                Opacity="0.6"
+                Radius="20"
+                Offset="15,13" />
+        </Frame.Shadow>
+        <Grid RowDefinitions="20,20,5,20,20">
+            <Label
+                FontAttributes="Bold"
+                FontSize="15"
+                HorizontalOptions="Start"
+                Text="{Binding CustomerName, Source={x:Reference this}}"
+                TextColor="{DynamicResource BorderColor}" />
+            <Label
+                Grid.Row="1"
+                Text="{Binding CustomerEmail, Source={x:Reference this}}"
+                TextColor="{DynamicResource BorderColor}" />
+            <Label
+                Grid.Row="3"
+                FontSize="15"
+                HorizontalOptions="Start"
+                TextColor="{DynamicResource BorderColor}"
+                VerticalTextAlignment="Start">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding JobTitle, Source={x:Reference this}}" />
+                        <Span Text=" at " />
+                        <Span Text="{Binding CompanyName, Source={x:Reference this}}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label
+                Grid.Row="4"
+                FontSize="15"
+                HorizontalOptions="Start"
+                Text="{Binding PhoneNumber, Source={x:Reference this}}"
+                TextColor="{DynamicResource BorderColor}"
+                VerticalTextAlignment="Start" />
+        </Grid>
+    </Frame>
+</ContentView>

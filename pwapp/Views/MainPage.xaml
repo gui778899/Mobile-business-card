@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PWApp.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewmodel="clr-namespace:PWApp.ViewModels"
+    x:DataType="viewmodel:MainPageViewModel"
+    BackgroundColor="{DynamicResource PageBackgourndColor}"
+    Shell.PresentationMode="Modal">
+    <Shell.TitleView>
+        <VerticalStackLayout BackgroundColor="Transparent" />
+    </Shell.TitleView>
+    <Grid RowDefinitions="*,100" VerticalOptions="Fill">
+        <VerticalStackLayout
+            Grid.Row="0"
+            Padding="70"
+            Spacing="70"
+            VerticalOptions="CenterAndExpand">
+            <Button
+                Command="{Binding GenerateQrCodeCommand}"
+                Style="{DynamicResource MainMenuButton}"
+                Text="Generate QR-code" />
+            <Button
+                Command="{Binding ScanQrCodeCommand}"
+                Style="{DynamicResource MainMenuButton}"
+                Text="Scan QR-code" />
+            <Button
+                Command="{Binding ViewCardsCommand}"
+                Style="{DynamicResource MainMenuButton}"
+                Text="Cards" />
+        </VerticalStackLayout>
+        <VerticalStackLayout Grid.Row="1">
+            <Switch
+                HorizontalOptions="Center"
+                OnColor="DimGray"
+                Scale="1.8"
+                ThumbColor="{DynamicResource ButtonColor}"
+                VerticalOptions="Center">
+                <Switch.Behaviors>
+                    <toolkit:EventToCommandBehavior Command="{Binding ChangeThemeCommand}" EventName="Toggled" />
+                </Switch.Behaviors>
+            </Switch>
+            <Label
+                Margin="0,15,0,0"
+                FontAttributes="Bold"
+                FontSize="18"
+                HorizontalOptions="Center"
+                Text="Log out"
+                TextColor="{DynamicResource ButtonColor}"
+                TextDecorations="Underline"
+                VerticalTextAlignment="End">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding LogoutCommand}" NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentPage>

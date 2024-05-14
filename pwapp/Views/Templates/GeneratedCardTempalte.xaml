@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="PWApp.Views.Templates.GeneratedCardTempalte"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="this">
+    <Frame
+        Margin="0,20,0,0"
+        Padding="10,10,15,20"
+        BorderColor="#002748"
+        CornerRadius="15"
+        HasShadow="True"
+        HeightRequest="185"
+        HorizontalOptions="Fill">
+        <Frame.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding TappedCommand, Source={x:Reference this}}" CommandParameter="{Binding CustomerId, Source={x:Reference this}}" />
+        </Frame.GestureRecognizers>
+        <Grid Padding="0,15,0,20" ColumnDefinitions="*,130">
+            <Grid Grid.Column="0" RowDefinitions="25,20,5,20,20,20">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="15"
+                    HorizontalOptions="Start"
+                    Text="{Binding CustomerName, Source={x:Reference this}}"
+                    TextColor="{DynamicResource BorderColor}" />
+                <Label
+                    Grid.Row="1"
+                    Text="{Binding CustomerEmail, Source={x:Reference this}}"
+                    TextColor="{DynamicResource BorderColor}" />
+                <Label
+                    Grid.Row="3"
+                    Text="{Binding JobTitle, Source={x:Reference this}}"
+                    TextColor="{DynamicResource BorderColor}" />
+                <Label
+                    Grid.Row="4"
+                    FontSize="15"
+                    HorizontalOptions="Start"
+                    TextColor="{DynamicResource BorderColor}"
+                    VerticalTextAlignment="Start">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="at " />
+                            <Span Text="{Binding CompanyName, Source={x:Reference this}}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label
+                    Grid.Row="5"
+                    FontSize="15"
+                    HorizontalOptions="Start"
+                    Text="{Binding PhoneNumber, Source={x:Reference this}}"
+                    TextColor="{DynamicResource BorderColor}"
+                    VerticalTextAlignment="Start" />
+            </Grid>
+            <Image
+                Grid.Column="1"
+                Margin="0"
+                BackgroundColor="WhiteSmoke"
+                HeightRequest="130"
+                Source="{Binding QrCodeImageSource, Source={x:Reference this}}"
+                WidthRequest="130" />
+        </Grid>
+
+    </Frame>
+</ContentView>

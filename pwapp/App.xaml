@@ -1,0 +1,134 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:tabs="clr-namespace:Sharpnado.Tabs;assembly=Maui.Tabs"
+             xmlns:local="clr-namespace:pwapp"
+             x:Class="pwapp.App">
+	<Application.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="Themes/DarkTheme.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+			<!--  CUSTOM STYLES  -->
+			<Style x:Key="MainMenuButton" TargetType="Button">
+				<Setter Property="TextColor" Value="{DynamicResource TextColor}" />
+				<Setter Property="BackgroundColor" Value="{DynamicResource ButtonColor}" />
+				<Setter Property="FontSize" Value="Large" />
+				<Setter Property="VerticalOptions" Value="Center" />
+				<Setter Property="MinimumHeightRequest" Value="120" />
+				<Setter Property="MaximumHeightRequest" Value="130" />
+				<Setter Property="FontAttributes" Value="Bold" />
+				<Setter Property="CornerRadius" Value="17" />
+				<Setter Property="Shadow">
+					<Shadow
+                    Brush="{DynamicResource ShadowColor}"
+                    Opacity="0.6"
+                    Radius="10"
+                    Offset="15,10" />
+				</Setter>
+			</Style>
+
+			<Style x:Key="CustomEntry" TargetType="Entry">
+				<Setter Property="FontAttributes" Value="Bold" />
+				<Setter Property="BackgroundColor" Value="White" />
+				<Setter Property="FontSize" Value="16" />
+				<Setter Property="TextColor" Value="#002748" />
+				<Setter Property="PlaceholderColor" Value="Gray" />
+				<Setter Property="IsSpellCheckEnabled" Value="False" />
+			</Style>
+
+			<Style x:Name="CustomBorder" TargetType="Border">
+				<Setter Property="Stroke" Value="{DynamicResource BorderColor}" />
+				<Setter Property="BackgroundColor" Value="White" />
+				<Setter Property="Padding" Value="30,3,30,3" />
+				<Setter Property="StrokeShape">
+					<Setter.Value>
+						<RoundRectangle CornerRadius="12" />
+					</Setter.Value>
+				</Setter>
+				<Setter Property="Shadow">
+					<Shadow
+                    Brush="{DynamicResource ShadowColor}"
+                    Opacity="0.6"
+                    Radius="10"
+                    Offset="15,10" />
+				</Setter>
+			</Style>
+
+			<Style x:Key="PageActionButton" TargetType="Button">
+				<Setter Property="BackgroundColor" Value="{DynamicResource ButtonColor}" />
+				<Setter Property="CornerRadius" Value="13" />
+				<Setter Property="FontAttributes" Value="Bold" />
+				<Setter Property="FontSize" Value="16" />
+				<Setter Property="TextColor" Value="{DynamicResource TextColor}" />
+				<Setter Property="Shadow">
+					<Setter.Value>
+						<Shadow
+                        Brush="{DynamicResource ShadowColor}"
+                        Opacity="0.6"
+                        Radius="10"
+                        Offset="15,10" />
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<Style x:Key="HeaderLabel" TargetType="Label">
+				<Setter Property="TextColor" Value="{DynamicResource HeaderLabelColor}" />
+				<Setter Property="FontSize" Value="30" />
+				<Setter Property="FontAttributes" Value="Bold" />
+				<Setter Property="HorizontalTextAlignment" Value="Center" />
+			</Style>
+			<Style x:Key="PopupButton" TargetType="Button">
+				<Setter Property="BackgroundColor" Value="#002847" />
+				<Setter Property="CornerRadius" Value="13" />
+				<Setter Property="TextColor" Value="White" />
+				<Setter Property="FontAttributes" Value="Bold" />
+				<Setter Property="Shadow">
+					<Shadow
+                    Brush="gray"
+                    Opacity="0.6"
+                    Radius="10"
+                    Offset="10,13" />
+				</Setter>
+			</Style>
+			<Style x:Key="PopupLabel" TargetType="Label">
+				<Setter Property="FontAttributes" Value="Bold" />
+				<Setter Property="FontFamily" Value="Helvetica" />
+				<Setter Property="TextColor" Value="#002847" />
+				<Setter Property="Shadow">
+					<Shadow
+                    Brush="gray"
+                    Opacity="0.6"
+                    Radius="10"
+                    Offset="5,13" />
+				</Setter>
+			</Style>
+			<Style x:Key="SortingChoiceBorder" TargetType="Frame">
+				<Setter Property="MinimumWidthRequest" Value="90" />
+				<Setter Property="HeightRequest" Value="40" />
+				<Setter Property="CornerRadius" Value="20" />
+				<Setter Property="BorderColor" Value="{DynamicResource ButtonColor}" />
+				<Setter Property="BackgroundColor" Value="Transparent" />
+				<Setter Property="Margin" Value="5" />
+				<Setter Property="Padding" Value="0" />
+			</Style>
+			<Style x:Key="SortingChoiceLabel" TargetType="Label">
+				<Setter Property="Margin" Value="5" />
+				<Setter Property="FontAttributes" Value="Bold" />
+				<Setter Property="FontSize" Value="15" />
+				<Setter Property="TextColor" Value="{DynamicResource ButtonColor}" />
+				<Setter Property="HorizontalTextAlignment" Value="Center" />
+				<Setter Property="VerticalTextAlignment" Value="Center" />
+			</Style>
+			<Style x:Key="TabStyle" TargetType="tabs:UnderlinedTabItem">
+				<Setter Property="SelectedTabColor" Value="{DynamicResource HeaderLabelColor}" />
+				<Setter Property="LabelSize" Value="20" />
+				<Setter Property="VerticalOptions" Value="Fill" />
+				<Setter Property="HorizontalOptions" Value="Fill" />
+				<Setter Property="UnderlineAllTab" Value="True" />
+				<Setter Property="UnselectedLabelColor" Value="LightGray" />
+				<Setter Property="UnderlineHeight" Value="2" />
+				<Setter Property="Margin" Value="25,0,25,0" />
+			</Style>
+		</ResourceDictionary>
+	</Application.Resources>
+</Application>

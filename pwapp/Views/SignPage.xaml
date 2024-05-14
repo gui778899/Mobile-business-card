@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PWApp.Views.SignPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:tabs="clr-namespace:Sharpnado.Tabs;assembly=Maui.Tabs"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewmodel="clr-namespace:PWApp.ViewModels"
+    Title="SignPage"
+    x:DataType="viewmodel:SignPageViewModel"
+    BackgroundColor="{DynamicResource PageBackgourndColor}">
+    <ContentPage.Resources>
+        <Style x:Key="TabStyle" TargetType="tabs:UnderlinedTabItem">
+            <Setter Property="SelectedTabColor" Value="{DynamicResource HeaderLabelColor}" />
+            <Setter Property="LabelSize" Value="20" />
+            <Setter Property="VerticalOptions" Value="Fill" />
+            <Setter Property="HorizontalOptions" Value="Fill" />
+            <Setter Property="UnderlineAllTab" Value="True" />
+            <Setter Property="UnselectedLabelColor" Value="LightGray" />
+            <Setter Property="UnderlineHeight" Value="2" />
+            <Setter Property="Margin" Value="25,0,25,0" />
+        </Style>
+    </ContentPage.Resources>
+    <VerticalStackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+        <Grid Padding="30,0,30,0" RowDefinitions="50,250">
+            <tabs:TabHostView
+                x:Name="TabHost"
+                Grid.Row="0"
+                SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
+                <tabs:UnderlinedTabItem Label="Sign in" Style="{DynamicResource Key=TabStyle}" />
+                <tabs:UnderlinedTabItem Label="Sign up" Style="{DynamicResource Key=TabStyle}" />
+                <tabs:TabHostView.Behaviors>
+                    <toolkit:EventToCommandBehavior Command="{Binding ClearInputsCommand}" EventName="SelectedTabIndexChanged" />
+                </tabs:TabHostView.Behaviors>
+            </tabs:TabHostView>
+            <tabs:ViewSwitcher
+                Grid.Row="1"
+                Animate="True"
+                HorizontalOptions="FillAndExpand"
+                SelectedIndex="{Binding SelectedIndex, Source={x:Reference TabHost}}">
+                <Grid
+                    x:Name="log"
+                    Margin="0,10,0,0"
+                    BackgroundColor="Transparent"
+                    RowDefinitions="50,50,30,50,20"
+                    RowSpacing="5">
+                    <Border
+                        Grid.Row="0"
+                        HeightRequest="45"
+                        Style="{DynamicResource InputBorder}">
+                        <Entry
+                            Keyboard="Email"
+                            Placeholder="Email"
+                            Style="{DynamicResource CustomEntry}"
+                            Text="{Binding Email, Mode=TwoWay}" />
+                    </Border>
+                    <Border
+                        Grid.Row="1"
+                        HeightRequest="45"
+                        Style="{DynamicResource InputBorder}">
+                        <Entry
+                            IsPassword="True"
+                            Keyboard="Default"
+                            Placeholder="Password"
+                            Style="{DynamicResource CustomEntry}"
+                            Text="{Binding Password}" />
+                    </Border>
+                    <HorizontalStackLayout Grid.Row="2">
+                        <CheckBox IsChecked="{Binding RememberUser, Mode=TwoWay}" Color="{DynamicResource HeaderLabelColor}" />
+                        <Label
+                            FontSize="15"
+                            HorizontalOptions="Center"
+                            Style="{DynamicResource HeaderLabel}"
+                            Text="Remember me"
+                            VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+                    <Button
+                        Grid.Row="3"
+                        Padding="20,0,20,0"
+                        Command="{Binding SignInCommand}"
+                        FontSize="17"
+                        HeightRequest="40"
+                        Style="{DynamicResource PageActionButton}"
+                        Text="Enter" />
+                    <Label Grid.Row="4" Text="{Binding ErrorLogText}" />
+                </Grid>
+                <Grid
+                    x:Name="reg"
+                    Margin="0,10,0,0"
+                    BackgroundColor="Transparent"
+                    RowDefinitions="50,50,50,30,50,20"
+                    RowSpacing="5">
+                    <Border
+                        Grid.Row="0"
+                        HeightRequest="45"
+                        Style="{DynamicResource InputBorder}">
+                        <Entry
+                            Keyboard="Email"
+                            Placeholder="Email"
+                            Style="{DynamicResource CustomEntry}"
+                            Text="{Binding Email}" />
+                    </Border>
+                    <Border
+                        Grid.Row="1"
+                        HeightRequest="45"
+                        Style="{DynamicResource InputBorder}">
+                        <Entry
+                            IsPassword="True"
+                            Keyboard="Default"
+                            Placeholder="Password"
+                            Style="{DynamicResource CustomEntry}"
+                            Text="{Binding Password}" />
+                    </Border>
+                    <Border
+                        Grid.Row="2"
+                        HeightRequest="45"
+                        Style="{DynamicResource InputBorder}">
+                        <Entry
+                            IsPassword="True"
+                            Keyboard="Default"
+                            Placeholder="Repeat your password"
+                            Style="{DynamicResource CustomEntry}"
+                            Text="{Binding CopyOfPassword, Mode=TwoWay}" />
+                    </Border>
+                    <HorizontalStackLayout Grid.Row="3">
+                        <CheckBox IsChecked="{Binding RememberUser, Mode=TwoWay}" Color="{DynamicResource HeaderLabelColor}" />
+                        <Label
+                            FontSize="15"
+                            HorizontalOptions="Center"
+                            Style="{DynamicResource HeaderLabel}"
+                            Text="Remember me"
+                            VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+                    <Button
+                        Grid.Row="4"
+                        Padding="20,0,20,0"
+                        Command="{Binding SignUpCommand}"
+                        FontSize="17"
+                        HeightRequest="40"
+                        Style="{DynamicResource PageActionButton}"
+                        Text="Register" />
+                </Grid>
+            </tabs:ViewSwitcher>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

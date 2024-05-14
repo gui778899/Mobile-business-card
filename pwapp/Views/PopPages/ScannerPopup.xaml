@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup
+    x:Class="PWApp.Views.PopPages.ScannerPopPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+    CanBeDismissedByTappingOutsideOfPopup="False"
+    Size="250,170"
+    Color="Transparent">
+    <Frame BorderColor="Transparent" CornerRadius="13">
+        <Grid
+            Padding="5,5,5,10"
+            BackgroundColor="white"
+            RowSpacing="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                FontAttributes="Bold"
+                FontFamily="Helvetica"
+                HorizontalOptions="Center"
+                Text="You've added a contact!"
+                TextColor="#002847"
+                VerticalOptions="Center">
+                <Label.Shadow>
+                    <Shadow
+                        Brush="gray"
+                        Opacity="0.6"
+                        Radius="5"
+                        Offset="10,13" />
+                </Label.Shadow>
+            </Label>
+            <Button
+                Grid.Row="4"
+                Grid.RowSpan="2"
+                Grid.Column="0"
+                Margin="2.5"
+                BackgroundColor="#002847"
+                Clicked="ScanClicked"
+                CornerRadius="13"
+                FontAttributes="Bold"
+                FontFamily="Helvetica"
+                Text="Scan more"
+                TextColor="White">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="gray"
+                        Opacity="0.6"
+                        Radius="10"
+                        Offset="10,13" />
+                </Button.Shadow>
+            </Button>
+            <Button
+                Grid.Row="4"
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                Margin="2.5"
+                BackgroundColor="#002847"
+                Clicked="OkayClicked"
+                CornerRadius="13"
+                FontAttributes="Bold"
+                FontFamily="Helvetica"
+                Text="Okay"
+                TextColor="White">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="gray"
+                        Opacity="0.6"
+                        Radius="10"
+                        Offset="10,13" />
+                </Button.Shadow>
+            </Button>
+        </Grid>
+    </Frame>
+</mct:Popup>

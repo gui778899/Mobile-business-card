@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PWApp.CardsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:icons="clr-namespace:PWApp.Resources.Icons"
+    xmlns:local="clr-namespace:PWApp"
+    xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+    xmlns:model="clr-namespace:PWApp.Data.Models"
+    xmlns:models="clr-namespace:PWApp.Bindable"
+    xmlns:tabs="clr-namespace:Sharpnado.Tabs;assembly=Maui.Tabs"
+    xmlns:templates="clr-namespace:PWApp.Views.Templates"
+    xmlns:viewmodel="clr-namespace:PWApp.ViewModels"
+    x:Name="this"
+    Title=""
+    x:DataType="viewmodel:CardsPageViewModel"
+    BackgroundColor="{DynamicResource PageBackgourndColor}">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False" IsVisible="False" />
+    </Shell.BackButtonBehavior>
+
+    <StackLayout>
+        <Grid RowDefinitions="50,*" VerticalOptions="FillAndExpand">
+            <tabs:TabHostView
+                x:Name="TabHost"
+                Grid.Row="0"
+                SelectedIndex="{Binding SelectedTab}">
+                <tabs:UnderlinedTabItem Label="My cards" Style="{DynamicResource Key=TabStyle}" />
+                <tabs:UnderlinedTabItem Label="Scanned" Style="{DynamicResource Key=TabStyle}" />
+            </tabs:TabHostView>
+            <tabs:ViewSwitcher
+                Grid.Row="1"
+                Animate="False"
+                HorizontalOptions="FillAndExpand"
+                SelectedIndex="{Binding Source={x:Reference TabHost}, Path=SelectedIndex, Mode=TwoWay}">
+
+                <Grid RowDefinitions="55,45,*">
+                    <Grid
+                        Grid.Row="0"
+                        Padding="0"
+                        ColumnDefinitions="auto,*">
+                        <Label
+                            Grid.Column="0"
+                            Margin="5,0,10,0"
+                            BackgroundColor="Transparent"
+                            FontAttributes="Bold"
+                            FontSize="17"
+                            Text="Sort by:"
+                            TextColor="Gray"
+                            VerticalTextAlignment="Center" />
+                        <ScrollView
+                            Grid.Column="1"
+                            Padding="0,0,5,0"
+                            BackgroundColor="Transparent"
+                            Orientation="Horizontal">
+                            <HorizontalStackLayout BackgroundColor="Transparent">
+                                <Frame Style="{DynamicResource SortingChoiceBorder}">
+                                    <Frame.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding ByName}"
+                                            TargetType="Frame"
+                                            Value="true">
+                                            <Setter Property="BackgroundColor" Value="{DynamicResource ButtonColor}" />
+                                        </DataTrigger>
+                                    </Frame.Triggers>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GeneratedSortingOptionCommand}" CommandParameter="Name" />
+                                    </Frame.GestureRecognizers>
+                                    <Label Style="{DynamicResource SortingChoiceLabel}" Text="Name">
+                                        <Label.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding ByName}"
+                                                TargetType="Label"
+                                                Value="true">
+                                                <Setter Property="TextColor" Value="{DynamicResource PageBackgourndColor}" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </Frame>
+                                <Frame Style="{DynamicResource SortingChoiceBorder}">
+                                    <Frame.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding ByEmail}"
+                                            TargetType="Frame"
+                                            Value="true">
+                                            <Setter Property="BackgroundColor" Value="{DynamicResource ButtonColor}" />
+                                        </DataTrigger>
+                                    </Frame.Triggers>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GeneratedSortingOptionCommand}" CommandParameter="Email" />
+                                    </Frame.GestureRecognizers>
+                                    <Label Style="{DynamicResource SortingChoiceLabel}" Text="Email">
+                                        <Label.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding ByEmail}"
+                                                TargetType="Label"
+                                                Value="true">
+                                                <Setter Property="TextColor" Value="{DynamicResource PageBackgourndColor}" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </Frame>
+                                <Frame Style="{DynamicResource SortingChoiceBorder}">
+                                    <Frame.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding ByPhone}"
+                                            TargetType="Frame"
+                                            Value="true">
+                                            <Setter Property="BackgroundColor" Value="{DynamicResource ButtonColor}" />
+                                        </DataTrigger>
+                                    </Frame.Triggers>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GeneratedSortingOptionCommand}" CommandParameter="Phone number" />
+                                    </Frame.GestureRecognizers>
+                                    <Label Style="{DynamicResource SortingChoiceLabel}" Text="Phone number">
+                                        <Label.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding ByPhone}"
+                                                TargetType="Label"
+                                                Value="true">
+                                                <Setter Property="TextColor" Value="{DynamicResource PageBackgourndColor}" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </Frame>
+                                <Frame Style="{DynamicResource SortingChoiceBorder}">
+                                    <Frame.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding ByJobTitle}"
+                                            TargetType="Frame"
+                                            Value="true">
+                                            <Setter Property="BackgroundColor" Value="{DynamicResource ButtonColor}" />
+                                        </DataTrigger>
+                                    </Frame.Triggers>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GeneratedSortingOptionCommand}" CommandParameter="Job title" />
+                                    </Frame.GestureRecognizers>
+                                    <Label Style="{DynamicResource SortingChoiceLabel}" Text="Job title">
+                                        <Label.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding ByJobTitle}"
+                                                TargetType="Label"
+                                                Value="true">
+                                                <Setter Property="TextColor" Value="{DynamicResource PageBackgourndColor}" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </Frame>
+                                <Frame Style="{DynamicResource SortingChoiceBorder}">
+                                    <Frame.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding ByCompany}"
+                                            TargetType="Frame"
+                                            Value="true">
+                                            <Setter Property="BackgroundColor" Value="{DynamicResource ButtonColor}" />
+                                        </DataTrigger>
+                                    </Frame.Triggers>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GeneratedSortingOptionCommand}" CommandParameter="Company name" />
+                                    </Frame.GestureRecognizers>
+                                    <Label Style="{DynamicResource SortingChoiceLabel}" Text="Company name">
+                                        <Label.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding ByCompany}"
+                                                TargetType="Label"
+                                                Value="true">
+                                                <Setter Property="TextColor" Value="{DynamicResource PageBackgourndColor}" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </Frame>
+                            </HorizontalStackLayout>
+                        </ScrollView>
+                    </Grid>
+                    <Grid
+                        Grid.Row="1"
+                        Padding="0,0,10,0"
+                        ColumnDefinitions="*,20">
+                        <Entry
+                            x:Name="genEntry"
+                            Grid.Column="0"
+                            Margin="5,5,0,0"
+                            BackgroundColor="{DynamicResource PageBackgourndColor}"
+                            FontAttributes="Bold"
+                            FontSize="17"
+                            HeightRequest="40"
+                            Placeholder="Enter search text"
+                            PlaceholderColor="Gray"
+                            TextColor="{DynamicResource ButtonColor}">
+                            <Entry.Behaviors>
+                                <mct:EventToCommandBehavior
+                                    Command="{Binding SearchGeneratedCardCommand}"
+                                    CommandParameter="{x:Reference genEntry}"
+                                    EventName="TextChanged" />
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label
+                            Grid.Column="1"
+                            Margin="0,5,0,0"
+                            FontFamily="IconsFont"
+                            FontSize="25"
+                            Text="{x:Static icons:Icons.Filter_alt}"
+                            TextColor="Gray">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OptionsGeneratedTappedCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                    <RefreshView
+                        Grid.Row="2"
+                        Command="{Binding RefreshMyCardsCommand}"
+                        IsRefreshing="{Binding IsMyCardsBusy}">
+                        <ScrollView>
+
+                            <VerticalStackLayout VerticalOptions="FillAndExpand">
+                                <VerticalStackLayout
+                                    x:Name="verticalStackLayoutMyCards"
+                                    Padding="40,10,40,0"
+                                    MinimumHeightRequest="500"
+                                    Spacing="50"
+                                    VerticalOptions="Fill">
+
+                                    <CollectionView ItemsSource="{Binding MyCards}">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate x:DataType="models:CustomerModelBindable">
+                                                <templates:GeneratedCardTempalte
+                                                    CompanyName="{Binding CompanyName}"
+                                                    CustomerEmail="{Binding Email}"
+                                                    CustomerId="{Binding Id}"
+                                                    CustomerName="{Binding Name}"
+                                                    JobTitle="{Binding JobTitle}"
+                                                    PhoneNumber="{Binding PhoneNumber}"
+                                                    QrCodeImageSource="{Binding QrCode}"
+                                                    TappedCommand="{Binding Source={x:Reference this}, Path=BindingContext.GeneratedCardTappedCommand}" />
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </VerticalStackLayout>
+                                <VerticalStackLayout
+                                    Margin="0,50,0,100"
+                                    Padding="115,0,115,0"
+                                    VerticalOptions="End">
+                                    <Button
+                                        BackgroundColor="{DynamicResource ButtonColor}"
+                                        Command="{Binding GenerateNewCardCommand}"
+                                        CornerRadius="13"
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        Text="Generate new"
+                                        TextColor="{DynamicResource TextColor}">
+                                        <Button.Shadow>
+                                            <Shadow
+                                                Brush="{DynamicResource ShadowColor}"
+                                                Opacity="0.6"
+                                                Radius="10"
+                                                Offset="15,13" />
+                                        </Button.Shadow>
+                                    </Button>
+                                </VerticalStackLayout>
+                            </VerticalStackLayout>
+
+                        </ScrollView>
+                    </RefreshView>
+                </Grid>
+                <Grid RowDefinitions="55,45,*">
+                    <Grid
+                        Grid.Row="0"
+                        Padding="0"
+                        ColumnDefinitions="auto,*">
+                        <Label
+                            Grid.Column="0"
+                            Margin="5,0,10,0"
+                            BackgroundColor="Transparent"
+                            FontAttributes="Bold"
+                            FontSize="17"
+                            Text="Sort by:"
+                            TextColor="Gray"
+                            VerticalTextAlignment="Center" />
+                        <ScrollView
+                            Grid.Column="1"
+                            Padding="0,0,5,0"
+                            BackgroundColor="Transparent"
+                            Orientation="Horizontal">
+                            <HorizontalStackLayout BackgroundColor="Transparent">
+                                <Frame Style="{DynamicResource SortingChoiceBorder}">
+                                    <Frame.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding ByName}"
+                                            TargetType="Frame"
+                                            Value="true">
+                                            <Setter Property="BackgroundColor" Value="{DynamicResource ButtonColor}" />
+                                        </DataTrigger>
+                                    </Frame.Triggers>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GeneratedSortingOptionCommand}" CommandParameter="Name" />
+                                    </Frame.GestureRecognizers>
+                                    <Label Style="{DynamicResource SortingChoiceLabel}" Text="Name">
+                                        <Label.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding ByName}"
+                                                TargetType="Label"
+                                                Value="true">
+                                                <Setter Property="TextColor" Value="{DynamicResource PageBackgourndColor}" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </Frame>
+                                <Frame Style="{DynamicResource SortingChoiceBorder}">
+                                    <Frame.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding ByEmail}"
+                                            TargetType="Frame"
+                                            Value="true">
+                                            <Setter Property="BackgroundColor" Value="{DynamicResource ButtonColor}" />
+                                        </DataTrigger>
+                                    </Frame.Triggers>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GeneratedSortingOptionCommand}" CommandParameter="Email" />
+                                    </Frame.GestureRecognizers>
+                                    <Label Style="{DynamicResource SortingChoiceLabel}" Text="Email">
+                                        <Label.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding ByEmail}"
+                                                TargetType="Label"
+                                                Value="true">
+                                                <Setter Property="TextColor" Value="{DynamicResource PageBackgourndColor}" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </Frame>
+                                <Frame Style="{DynamicResource SortingChoiceBorder}">
+                                    <Frame.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding ByPhone}"
+                                            TargetType="Frame"
+                                            Value="true">
+                                            <Setter Property="BackgroundColor" Value="{DynamicResource ButtonColor}" />
+                                        </DataTrigger>
+                                    </Frame.Triggers>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GeneratedSortingOptionCommand}" CommandParameter="Phone number" />
+                                    </Frame.GestureRecognizers>
+                                    <Label Style="{DynamicResource SortingChoiceLabel}" Text="Phone number">
+                                        <Label.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding ByPhone}"
+                                                TargetType="Label"
+                                                Value="true">
+                                                <Setter Property="TextColor" Value="{DynamicResource PageBackgourndColor}" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </Frame>
+                                <Frame Style="{DynamicResource SortingChoiceBorder}">
+                                    <Frame.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding ByJobTitle}"
+                                            TargetType="Frame"
+                                            Value="true">
+                                            <Setter Property="BackgroundColor" Value="{DynamicResource ButtonColor}" />
+                                        </DataTrigger>
+                                    </Frame.Triggers>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GeneratedSortingOptionCommand}" CommandParameter="Job title" />
+                                    </Frame.GestureRecognizers>
+                                    <Label Style="{DynamicResource SortingChoiceLabel}" Text="Job title">
+                                        <Label.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding ByJobTitle}"
+                                                TargetType="Label"
+                                                Value="true">
+                                                <Setter Property="TextColor" Value="{DynamicResource PageBackgourndColor}" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </Frame>
+                                <Frame Style="{DynamicResource SortingChoiceBorder}">
+                                    <Frame.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding ByCompany}"
+                                            TargetType="Frame"
+                                            Value="true">
+                                            <Setter Property="BackgroundColor" Value="{DynamicResource ButtonColor}" />
+                                        </DataTrigger>
+                                    </Frame.Triggers>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GeneratedSortingOptionCommand}" CommandParameter="Company name" />
+                                    </Frame.GestureRecognizers>
+                                    <Label Style="{DynamicResource SortingChoiceLabel}" Text="Company name">
+                                        <Label.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding ByCompany}"
+                                                TargetType="Label"
+                                                Value="true">
+                                                <Setter Property="TextColor" Value="{DynamicResource PageBackgourndColor}" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </Frame>
+                            </HorizontalStackLayout>
+                        </ScrollView>
+                    </Grid>
+                    <Grid
+                        Grid.Row="1"
+                        Padding="0,0,10,0"
+                        ColumnDefinitions="*,20">
+                        <Entry
+                            Grid.Column="0"
+                            Margin="5,5,0,0"
+                            BackgroundColor="{DynamicResource PageBackgourndColor}"
+                            FontAttributes="Bold"
+                            FontSize="17"
+                            HeightRequest="40"
+                            Placeholder="Enter search text"
+                            PlaceholderColor="Gray"
+                            TextColor="{DynamicResource ButtonColor}">
+                            <Entry.Behaviors>
+                                <mct:EventToCommandBehavior Command="{Binding SearchScannedCommand}" EventName="TextChanged" />
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label
+                            Grid.Column="1"
+                            Margin="0,5,0,0"
+                            FontFamily="IconsFont"
+                            FontSize="25"
+                            Text="{x:Static icons:Icons.Filter_alt}"
+                            TextColor="Gray">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OptionsScannedTappedCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                    <RefreshView
+                        Grid.Row="2"
+                        Command="{Binding RefreshScannedCardsCommand}"
+                        IsRefreshing="{Binding IsOtherCardsBusy}">
+                        <ScrollView>
+                            <VerticalStackLayout VerticalOptions="FillAndExpand">
+                                <VerticalStackLayout
+                                    x:Name="verticalStackLayoutOtherCards"
+                                    Padding="70,20,70,0"
+                                    MinimumHeightRequest="500"
+                                    Spacing="50"
+                                    VerticalOptions="Fill">
+                                    <CollectionView ItemsSource="{Binding OtherCards}">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate x:DataType="models:CustomerModelBindable">
+                                                <templates:ScannedCardTemplate
+                                                    CompanyName="{Binding CompanyName}"
+                                                    CustomerEmail="{Binding Email}"
+                                                    CustomerName="{Binding Name}"
+                                                    JobTitle="{Binding JobTitle}"
+                                                    PhoneNumber="{Binding PhoneNumber}" />
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Margin="0,50,0,100" Padding="115,0,115,0">
+                                    <Button
+                                        BackgroundColor="{DynamicResource ButtonColor}"
+                                        Command="{Binding ScanNewCardCommand}"
+                                        CornerRadius="13"
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        Text="Scan new"
+                                        TextColor="{DynamicResource TextColor}">
+                                        <Button.Shadow>
+                                            <Shadow
+                                                Brush="{DynamicResource ShadowColor}"
+                                                Opacity="0.6"
+                                                Radius="10"
+                                                Offset="15,13" />
+                                        </Button.Shadow>
+                                    </Button>
+                                </VerticalStackLayout>
+                            </VerticalStackLayout>
+                        </ScrollView>
+                    </RefreshView>
+                </Grid>
+            </tabs:ViewSwitcher>
+        </Grid>
+    </StackLayout>
+</ContentPage>

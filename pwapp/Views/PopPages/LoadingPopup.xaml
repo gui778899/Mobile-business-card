@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             x:Class="PWApp.Views.PopPages.LoadingPopup"
+             Size="250,170"
+             CanBeDismissedByTappingOutsideOfPopup="False"
+             Color="Transparent">
+    <Frame BorderColor="Transparent" CornerRadius="13">
+        <Grid BackgroundColor="white" Padding="5,5,5,10" RowSpacing="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ActivityIndicator IsRunning="True" Color="#002847" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+            <Label Text="Loading..."
+               FontFamily="Helvetica"
+               FontSize="25"
+               FontAttributes="Bold"
+               TextColor="#002847" 
+               VerticalOptions="Center"
+               HorizontalOptions="Center"
+               Grid.Row="3"
+               Grid.RowSpan="2"
+               Grid.Column="0"
+               Grid.ColumnSpan="2">
+                <Label.Shadow>
+                    <Shadow Brush="gray"
+                        Offset="10,13"
+                        Radius="10"
+                        Opacity="0.6"/>
+                </Label.Shadow>
+            </Label>
+        </Grid>
+    </Frame>
+</mct:Popup>
