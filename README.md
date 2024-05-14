@@ -1,4 +1,4 @@
-# 6002CEM_JoaoPestana C# and .NET Maui Application Development Project, Student ID: 11660295
+
 
 ## Overview
 This document provides an overview of a software development project for an application designed using C# and .NET Maui framework. The app's primary functionality is to manage and share contact information via QR codes.
